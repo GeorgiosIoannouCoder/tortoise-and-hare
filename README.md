@@ -33,8 +33,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#rules">Rules</a></li>
-        <li><a href="#key-feature">Key Feature</a></li>
+        <li><a href="#requiremnets">Requirements</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -46,7 +45,6 @@
       </ul>
     </li>
     <li><a href="#code">Code</a></li>
-    <li><a href="#output">Output</a></li>
     <li><a href="#demo">Demo</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
