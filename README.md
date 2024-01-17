@@ -112,7 +112,7 @@ You can find the requirements of this assignment [here](https://github.com/Georg
    cd tortoise-and-hare
    ```
 
-4. Open your file explorer.
+4. Open your file explorer
 
    ```sh
    start .
