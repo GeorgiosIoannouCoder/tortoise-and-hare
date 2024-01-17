@@ -1,0 +1,265 @@
+import java.security.SecureRandom;
+/**
+ * Ioannou_Tortoise_And_Hare.java
+ * TortoiseAndHare class recreates a version of the classic race of the tortoise and the hare.
+ *
+ * @author Georgios Ioannou
+ * @version 1.0 08 Oct 2021
+ */
+public class TortoiseAndHare {
+
+    /**
+     * A static final variable for holding the finish square(maximum number of squares of the track)
+     */
+    private static final int MAX_MOVES = 100;
+
+    /**
+     * A static final variable for holding the upper limit to the simulation loop
+     */
+    private static final int MAX_ITERATIONS = 1000;
+
+    /**
+     * An instance variable for holding the current position on the track of the tortoise
+     */
+    private int tortoiseCounter = 0;
+
+    /**
+     * An instance variable for holding the current position on the track of the hare
+     */
+    private int hareCounter = 0;
+
+    /**
+     * An instance variable for holding the number of iterations
+     */
+    private int numberOfIterations = 0;
+
+    /**
+     * Default constructor for simulating the classic race of the tortoise and the hare
+     * Default constructor holds all the simulation logic
+     *
+     * Postcondition: The simulation of the classic race of the tortoise and the hare, is successfully completed
+     */
+    public TortoiseAndHare() {
+
+        // an instance variable for holding the winner
+        String winner;
+
+        // print the start initial message when the race starts
+        System.out.println("ON YOUR MARK, GET SET");
+        System.out.println("BANG !!!!!");
+        System.out.println("AND THEY'RE OFF !!!!!");
+
+        // print the racer's position using the method printPositions
+        printPositions();
+
+        // do while loop repeats until either one wins, there is a tie, or the race times out
+        do {
+            ++numberOfIterations;
+            simulateTortoiseMove();
+            simulateHareMove();
+            printPositions();
+        } while ((tortoiseCounter < (MAX_MOVES - 1)) && (hareCounter < (MAX_MOVES - 1)) && (numberOfIterations < MAX_ITERATIONS));
+
+        // identify if there is a tie or if there is a winner according to how the do while loop terminated
+        if (numberOfIterations >= MAX_ITERATIONS) {
+            // entering this branch of the nested if statement indicates a time-out and
+            // that none of the contenders reach or pass square 99
+            System.out.println("\nTime Out!");
+            // identify if there is a tie or if there is no tie
+            // If there is no tie, then identify the winner
+            if (tortoiseCounter == hareCounter) {
+                winner = "Tie";
+            }
+            else if (tortoiseCounter > hareCounter) {
+                winner = "Tortoise";
+            }
+            else {
+                winner = "Hare";
+            }
+        }
+        else if ((tortoiseCounter >= (MAX_MOVES - 1)) && (hareCounter >= (MAX_MOVES - 1))) {
+            // entering this branch of the nested if statement indicates that there was no
+            // time out and that both of the contenders reach or pass square 99 at the same
+            // iteration indicating that there is a tie
+            winner = "Tie";
+        }
+        else if (tortoiseCounter >= (MAX_MOVES - 1)) {
+            // entering this branch of the nested if statement indicates that there was
+            // no time out and that the Tortoise reach or pass square 99 first indicating
+            // that there is a winner and this winner is the Tortoise
+            winner = "Tortoise";
+        }
+        else {
+            // entering this branch of the nested if statement indicates that there was
+            // no time out and that the Hare reach or pass square 99 first indicating
+            // that there is a winner and this winner is the Hare
+            winner = "Hare";
+        }
+
+        // the switch structure prints the correct result of the simulation depending on the
+        // situation of the simulation (tie or winner)
+        switch (winner) {
+            case "Tie":
+                System.out.println("\nIt's a tie");
+                System.out.print("Time Elapsed = " + numberOfIterations + " seconds");
+                break;
+            case "Tortoise":
+                System.out.println("\nTORTOISE WINS!!! YAY!!!");
+                System.out.print("Time Elapsed = " + numberOfIterations + " seconds");
+                break;
+            case "Hare":
+                System.out.println("\nHare wins. Yuch!");
+                System.out.print("Time Elapsed = " + numberOfIterations + " seconds");
+                break;
+        }
+    }
+
+    /**
+     * A function which simulates the movements of the hare
+     *
+     * Postcondition: The hare changed position(backwards or forwards) or remained at the same position
+     */
+    private void simulateHareMove() {
+
+        // an instance variable for holding the integer random number generated by the randomBetween() method
+        // the randomNumber is in the range 0 <= randomNumber <= 9 and indicates the Move Type
+        int randomNumber = randomBetween(0, 9);
+
+        if (randomNumber <= 2) {
+            // (randomNumber >= 0 && randomNumber <= 2) perform a "Walk" which is 30% of time
+            hareCounter += randomBetween(0, 1);
+        }
+        else if (randomNumber <= 4) {
+            // (randomNumber >= 3 && randomNumber <= 4) perform a "Sleep" which is 20% of time
+            hareCounter += 0;
+        }
+        else if (randomNumber <= 6) {
+            // (randomNumber >= 5 && randomNumber <= 6) perform a "Jump" which is 20% of time
+            hareCounter += randomBetween(1, 9);
+        }
+        else if (randomNumber <= 8) {
+            // (randomNumber >= 7 && randomNumber <= 8) perform a "Small slip" which is 20% of time
+            hareCounter -= randomBetween(1, 2);
+            // if the Hare slips before square 0 (negative square), move it back to square 0
+            if (hareCounter < 0) {
+                hareCounter = 0;
+            }
+        }
+        else {
+            // (randomNumber = 9) perform a "Big slip" which is 10% of time
+            hareCounter -= randomBetween(1, 10);
+            // if the Hare slips before square 0 (negative square), move it back to square 0
+            if (hareCounter < 0) {
+                hareCounter = 0;
+            }
+        }
+    }
+
+    /**
+     * A method that simulates the movements of the tortoise
+     *
+     * Postcondition: The tortoise changed position(backwards or forwards) or remained at the same position
+     */
+    private void simulateTortoiseMove() {
+
+        // an instance variable for holding the integer random number generated by the randomBetween() method
+        // the randomNumber is in the range 0 <= randomNumber <= 9 and indicates the Move Type
+        int randomNumber = randomBetween(0, 9);
+
+        if (randomNumber <= 4) {
+            // (randomNumber >= 0 && randomNumber <= 4) perform a "Jump" which is 50% of time
+            tortoiseCounter += randomBetween(1, 4);
+        }
+        else if (randomNumber <= 6) {
+            // (randomNumber >= 5 && randomNumber <= 6) perform a "Slip" which is 20% of time
+            tortoiseCounter -= randomBetween(1, 6);
+            // if the Tortoise slips before square 0 (negative square), move it back to square 0
+            if (tortoiseCounter < 0) {
+                tortoiseCounter = 0;
+            }
+        }
+        else if (randomNumber <= 8) {
+            // (randomNumber >= 7 && randomNumber <= 8) perform a "Walk" which is 20% of time
+            tortoiseCounter += randomBetween(0, 1);
+        }
+        else {
+            // (randomNumber == 9) perform a "Sleep" which is 10% of time
+            tortoiseCounter += 0;
+        }
+    }
+
+    /**
+     * Generates an integer random number between the two limits (inclusive)
+     *
+     * Precondition: start and end are valid integer values
+     * Postcondition: Generated an integer random number between the two limits
+     *
+     * @param start the start (minimum limit) of the range
+     * @param end the end (maximum limit) of the range
+     *
+     * @return returns an integer random number between the two limits (inclusive)
+     */
+    private int randomBetween(int start, int end) {
+        SecureRandom secRand = new SecureRandom();
+        return (secRand.nextInt(end - start + 1) + start);
+    }
+
+    /**
+     * Prints the race-track and shows the position of the tortoise and the hare
+     * Letter 'T' represents the Tortoise
+     * Letter 'H' represents the Hare
+     * Letter 'B' represents a tie
+     *
+     * Postcondition: Printed the race-track and showed the position of the tortoise and the hare
+     */
+    private void printPositions() {
+        System.out.println("\nIteration: " + numberOfIterations);
+        for (int i = 0; i < 100; ++i) {
+            if (i == tortoiseCounter) {
+                // check if the Tortoise and the Hare are on the same square
+                if (tortoiseCounter == hareCounter) {
+                    System.out.print('B');
+                }
+                else {
+                    System.out.print('T');
+                }
+            }
+            else if (i == hareCounter) {
+                System.out.print('H');
+            }
+            else {
+                System.out.print(' ');
+            }
+        }
+
+        // move the cursor to the start of the next line
+        System.out.println();
+
+        // it is more logical to use a for loop to output the track because it is known from before
+        // how many times to iterate(0 to 99 (inclusive)) however I am using a while loop
+        // to show syntax knowledge
+        // i is a control variable that makes sure that the while loop will terminate at some point
+        int i = 0;
+        while (i < 100) {
+            System.out.print('-');
+            ++i;
+        }
+    }
+
+    /**
+     * Main method starts the race by creating an instance of class TortoiseAndHare
+     * Main method begins execution of Java application
+     *
+     * @param args ignored within code. Don't provide command-line arguments
+     */
+    public static void main(String[] args) {
+
+        // this implementation, counts the squares of the track and the position numbers
+        // from 0 to 99 and not from 1 to 100
+
+        // create an instance of class TortoiseAndHare using the default constructor
+        // this can also be done using the following syntax on the net line
+        // new TortoiseAndHare();
+        TortoiseAndHare raceSimulation = new TortoiseAndHare();
+    }
+}
