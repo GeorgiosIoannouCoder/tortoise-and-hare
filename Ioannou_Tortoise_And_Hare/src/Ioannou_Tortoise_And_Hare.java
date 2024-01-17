@@ -1,12 +1,12 @@
 import java.security.SecureRandom;
 /**
  * Ioannou_Tortoise_And_Hare.java
- * TortoiseAndHare class recreates a version of the classic race of the tortoise and the hare.
+ * Ioannou_Tortoise_And_Hare class recreates a version of the classic race of the tortoise and the hare.
  *
  * @author Georgios Ioannou
  * @version 1.0 08 Oct 2021
  */
-public class TortoiseAndHare {
+public class Ioannou_Tortoise_And_Hare {
 
     /**
      * A static final variable for holding the finish square(maximum number of squares of the track)
@@ -39,7 +39,7 @@ public class TortoiseAndHare {
      *
      * Postcondition: The simulation of the classic race of the tortoise and the hare, is successfully completed
      */
-    public TortoiseAndHare() {
+    public Ioannou_Tortoise_And_Hare() {
 
         // an instance variable for holding the winner
         String winner;
@@ -247,7 +247,7 @@ public class TortoiseAndHare {
     }
 
     /**
-     * Main method starts the race by creating an instance of class TortoiseAndHare
+     * Main method starts the race by creating an instance of class Ioannou_Tortoise_And_Hare
      * Main method begins execution of Java application
      *
      * @param args ignored within code. Don't provide command-line arguments
@@ -257,9 +257,9 @@ public class TortoiseAndHare {
         // this implementation, counts the squares of the track and the position numbers
         // from 0 to 99 and not from 1 to 100
 
-        // create an instance of class TortoiseAndHare using the default constructor
+        // create an instance of class Ioannou_Tortoise_And_Hare using the default constructor
         // this can also be done using the following syntax on the net line
-        // new TortoiseAndHare();
-        TortoiseAndHare raceSimulation = new TortoiseAndHare();
+        // new Ioannou_Tortoise_And_Hare();
+        Ioannou_Tortoise_And_Hare raceSimulation = new Ioannou_Tortoise_And_Hare();
     }
 }
