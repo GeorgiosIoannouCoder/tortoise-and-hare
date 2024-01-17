@@ -122,9 +122,9 @@ You can find the requirements of this assignment [here](https://github.com/Georg
 
 6. Click on open/import an existing in IntelliJ IDEA.
 
-7. Open the Ioannou_Tortoise_And_Hare found inside teh tortoise-and-hare folder from steps 3 and 4 inside IntelliJ IDEA.
+7. Open the Ioannou_Tortoise_And_Hare directory found inside thh tortoise-and-hare directory from steps 3 and 4 inside IntelliJ IDEA.
 
-Run the application inside IntelliJ IDEA.
+8. Run the application inside IntelliJ IDEA. The main function to run the application is in this [file](https://github.com/GeorgiosIoannouCoder/tortoise-and-hare/blob/main/Ioannou_Tortoise_And_Hare/src/Ioannou_Tortoise_And_Hare.java).
    
 <p align="right"><a href="#readme-top">Back to top</a></p>
 
