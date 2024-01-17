@@ -136,6 +136,8 @@ The main code file can be found [here](https://github.com/GeorgiosIoannouCoder/t
 
 ## Demo
 
+https://github.com/GeorgiosIoannouCoder/tortoise-and-hare/assets/110848236/3415e95d-55cf-4f7f-88bd-d0ca45615df3
+
 <p align="right"><a href="#readme-top">Back to top</a></p>
 
 ## Contributing
